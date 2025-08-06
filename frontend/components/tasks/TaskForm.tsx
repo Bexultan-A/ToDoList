@@ -90,7 +90,9 @@ export function TaskForm() {
             mt="md"
           />
           <Group justify="flex-end" mt="md">
-            <Button type="submit">Create Task</Button>
+            <Button type="submit" color="black">
+              Create Task
+            </Button>
           </Group>
         </form>
       </Modal>
@@ -131,7 +133,9 @@ export function TaskForm() {
             <Button type="reset" variant="default">
               Cancel
             </Button>
-            <Button type="submit">Update Task</Button>
+            <Button type="submit" color="black">
+              Update Task
+            </Button>
           </Group>
         </form>
       </Modal>

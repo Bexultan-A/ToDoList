@@ -52,6 +52,7 @@ export function TaskList() {
                 value={page}
                 onChange={setPage}
                 total={data!.total_pages}
+                color="rgba(0, 0, 0, 1)"
               />
             </Flex>
           )}

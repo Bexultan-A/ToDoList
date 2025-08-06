@@ -27,6 +27,7 @@ export function TaskActions({ filter, onFilterChange }: TaskActionsProps) {
       <Button
         leftSection={<IconPlus size={16} />}
         onClick={() => setIsCreateModalOpen(true)}
+        color="black"
       >
         New Task
       </Button>
