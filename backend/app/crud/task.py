@@ -1,5 +1,5 @@
-from sqlmodel import Session, select
-from typing import List
+from sqlmodel import Session, select, func
+from typing import List, Optional, Tuple
 from app.models.task import Task
 from datetime import datetime
 
@@ -10,9 +10,18 @@ def create_task(session: Session, task_data: dict, user_id: int) -> Task:
     session.refresh(new_task)
     return new_task
 
-def get_user_tasks(session: Session, user_id: int, skip: int = 0, limit: int = 100) -> List[Task]:
-    statement = select(Task).where(Task.user_id == user_id).offset(skip).limit(limit)
-    return session.exec(statement).all()
+def get_user_tasks(session: Session, user_id: int, skip: int = 0, limit: int = 100, completed: Optional[bool] = None) -> Tuple[List[Task], int]:
+    statement = select(Task).where(Task.user_id == user_id)
+    
+    if completed is not None:
+        statement = statement.where(Task.is_completed == completed)
+    
+    count_query = select(func.count()).select_from(statement)
+    total_count = session.exec(count_query).one()
+
+    tasks = session.exec(statement.offset(skip).limit(limit).order_by(Task.created_at.desc())).all()
+    
+    return tasks, total_count
 
 def get_task_by_id(session: Session, task_id: int, user_id: int) -> Task | None:
     statement = select(Task).where(Task.id == task_id).where(Task.user_id == user_id)

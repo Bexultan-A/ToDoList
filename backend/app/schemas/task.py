@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from pydantic import BaseModel
 
@@ -20,3 +20,10 @@ class TaskUpdate(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
     is_completed: Optional[bool] = None
+
+class PaginatedTasks(BaseModel):
+    items: List[TaskRead]
+    total: int
+    page: int
+    per_page: int
+    total_pages: int

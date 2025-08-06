@@ -6,7 +6,7 @@ from app.auth.utils import create_access_token, verify_password
 from app.crud.user import get_user_by_username, create_user
 from app.schemas.user import UserCreate, UserRead, Token
 from app.database import get_session
-from app.auth.utils import ACCESS_TOKEN_EXPIRE_MINUTES
+from app.auth.utils import ACCESS_TOKEN_EXPIRE_HOURS
 
 router = APIRouter()
 
@@ -29,7 +29,7 @@ def login_user(
             detail="Incorrect username or password",
         )
     
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token_expires = timedelta(hours=ACCESS_TOKEN_EXPIRE_HOURS)
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
     )
