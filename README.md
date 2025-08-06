@@ -45,6 +45,29 @@ cd ToDoList
 docker-compose up --build
 ```
 
+**UPDATE: docker-compose Error (Docker doesn't see Dockerfile files). If you face this error:**
+```bash
+failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+```
+Try do these steps:
+- Go to ToDoList/backend/Dockerfile
+- Copy file content
+- Delete ToDoList/backend/Dockerfile
+- Create file named Dockerfile (yes, again)
+- Paste copied file content
+
+Same for frontend
+- Go to ToDoList/frontend/Dockerfile
+- Copy file content
+- Delete ToDoList/frontend/Dockerfile
+- Create file named Dockerfile (yes, again)
+- Paste copied file content
+
+Start the server again
+```bash
+docker-compose up --build
+```
+  
 3. **Access the application:**
 
 
