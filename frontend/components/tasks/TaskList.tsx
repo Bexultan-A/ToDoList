@@ -20,6 +20,12 @@ export function TaskList() {
     setPage(1);
   };
 
+  const onCompletedCheck = () => {
+    if (data!.items.length === 1 && page !== 1) {
+      setPage(page - 1);
+    }
+  };
+
   return (
     <div className="space-y-4">
       <TaskActions filter={filter} onFilterChange={onFilterChange} />
@@ -32,7 +38,11 @@ export function TaskList() {
         <>
           <div className="space-y-4">
             {data!.items.map((task) => (
-              <TaskItem key={task.id} task={task} />
+              <TaskItem
+                key={task.id}
+                task={task}
+                onCompletedCheck={onCompletedCheck}
+              />
             ))}
           </div>
 

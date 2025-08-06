@@ -58,7 +58,7 @@ export default function LoginForm() {
         {...form.getInputProps("password")}
       />
       <div className="w-full my-1 flex justify-end">
-        <Link href={"/sign-up"}>Don't have an account?</Link>
+        <Link href={"/sign-up"}>Don&apos;t have an account?</Link>
       </div>
       <Button type="submit" fullWidth color="black">
         Sign in

@@ -9,9 +9,10 @@ import { useTaskActions } from "@/services/tasks/TaskActionsContext";
 
 interface TaskItemProps {
   task: Task;
+  onCompletedCheck: () => void;
 }
 
-export function TaskItem({ task }: TaskItemProps) {
+export function TaskItem({ task, onCompletedCheck }: TaskItemProps) {
   const { mutate: deleteTask } = useDeleteTask();
   const { mutate: toggleCompletion } = useToggleTaskCompletion();
   const { setEditingTask, setIsEditModalOpen } = useTaskActions();
@@ -35,6 +36,7 @@ export function TaskItem({ task }: TaskItemProps) {
 
   const handleToggleComplete = () => {
     toggleCompletion(task);
+    onCompletedCheck();
   };
 
   return (
